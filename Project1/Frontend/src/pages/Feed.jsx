@@ -2,7 +2,13 @@ import React, {useState} from 'react'
 
 const Feed = () => {
 
-    const [posts, setPosts] = useState([])
+    const [posts, setPosts] = useState([
+        {
+            _id: "1",
+            image: "https://ik.imagekit.io/3c1hykdnu/image_Jai0JS196.jpg",
+            caption: "Sample caption 1"
+        }
+    ])
   return (
     <section className='feed-section'>
         {
