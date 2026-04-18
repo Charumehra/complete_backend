@@ -1,12 +1,17 @@
-import React from 'react';
+// App.jsx
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Register from "./pages/Register";
 
-const App = () => {
+function App() {
   return (
-    <div>
-      <h1>Welcome to the React App!</h1>
-      <p>This is a simple React application.</p>
-    </div>
+    <BrowserRouter>
+      <Routes>
+
+        <Route path="/" element={<Register />}/>
+
+      </Routes>
+    </BrowserRouter>
   );
-};
+}
 
 export default App;
