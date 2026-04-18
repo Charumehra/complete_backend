@@ -1,8 +1,8 @@
 require('dotenv').config()
 const app = require('./src/app')
-const connnectDB = require('./src/config/db.config')
+const connectDB = require('./src/db/db')
 
-connnectDB()
+connectDB()
 
 
 app.listen(3000, () => {
