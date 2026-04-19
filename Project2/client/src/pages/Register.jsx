@@ -10,7 +10,6 @@ const Register = () => {
   });
 
   const [loading, setLoading] = useState(false);
-
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -42,18 +41,18 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 relative overflow-hidden">
-      
-      <div className="absolute w-72 h-72 bg-pink-500 rounded-full blur-3xl opacity-30 top-10 left-10"></div>
-      <div className="absolute w-72 h-72 bg-indigo-500 rounded-full blur-3xl opacity-30 bottom-10 right-10"></div>
+    <div className="min-h-screen flex items-center justify-center bg-[#0f172a] relative overflow-hidden px-4">
+      <div className="absolute w-[400px] h-[400px] bg-purple-600/30 rounded-full blur-[120px] top-[-100px] left-[-100px]" />
+      <div className="absolute w-[400px] h-[400px] bg-pink-500/20 rounded-full blur-[120px] bottom-[-100px] right-[-100px]" />
 
       <form
         onSubmit={handleSubmit}
-        className="relative z-10 backdrop-blur-xl bg-white/10 border border-white/20 p-8 rounded-3xl shadow-2xl w-96 space-y-6 transition hover:shadow-pink-500/20"
+        className="relative w-full max-w-md backdrop-blur-2xl bg-white/5 border border-white/10 rounded-3xl shadow-2xl p-8 space-y-6"
       >
-        <h2 className="text-3xl font-bold text-white text-center tracking-wide">
-          Create Account
-        </h2>
+        <div className="text-center space-y-2">
+          <h2 className="text-3xl font-bold text-white">Create Account</h2>
+          <p className="text-sm text-gray-400">Join us and start your journey</p>
+        </div>
 
         <div className="space-y-4">
           <input
@@ -61,8 +60,8 @@ const Register = () => {
             name="username"
             value={form.username}
             placeholder="Username"
-            className="w-full p-3 rounded-xl bg-white/20 text-white placeholder-gray-200 outline-none focus:ring-2 focus:ring-pink-400 focus:bg-white/30 transition"
             onChange={handleChange}
+            className="w-full px-4 py-3 rounded-xl bg-white/10 text-white placeholder-gray-400 outline-none border border-white/10 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/30 transition"
           />
 
           <input
@@ -70,8 +69,8 @@ const Register = () => {
             name="email"
             value={form.email}
             placeholder="Email"
-            className="w-full p-3 rounded-xl bg-white/20 text-white placeholder-gray-200 outline-none focus:ring-2 focus:ring-purple-400 focus:bg-white/30 transition"
             onChange={handleChange}
+            className="w-full px-4 py-3 rounded-xl bg-white/10 text-white placeholder-gray-400 outline-none border border-white/10 focus:border-pink-500 focus:ring-2 focus:ring-pink-500/30 transition"
           />
 
           <input
@@ -79,24 +78,21 @@ const Register = () => {
             name="password"
             value={form.password}
             placeholder="Password"
-            className="w-full p-3 rounded-xl bg-white/20 text-white placeholder-gray-200 outline-none focus:ring-2 focus:ring-indigo-400 focus:bg-white/30 transition"
             onChange={handleChange}
+            className="w-full px-4 py-3 rounded-xl bg-white/10 text-white placeholder-gray-400 outline-none border border-white/10 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/30 transition"
           />
         </div>
 
         <button
           disabled={loading}
-          className="w-full bg-gradient-to-r from-pink-500 to-indigo-500 text-white font-semibold py-3 rounded-xl shadow-lg hover:scale-105 hover:shadow-xl transition disabled:opacity-50 disabled:hover:scale-100"
+          className="w-full py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-purple-500 via-pink-500 to-indigo-500 shadow-lg hover:shadow-pink-500/30 hover:scale-[1.02] transition active:scale-95 disabled:opacity-50 disabled:hover:scale-100"
         >
-          {loading ? "Creating..." : "Sign Up"}
+          {loading ? "Creating account..." : "Sign Up"}
         </button>
 
-        <p className="text-center text-gray-200 text-sm">
+        <p className="text-center text-sm text-gray-400">
           Already have an account?{" "}
-          <Link
-            to="/login"
-            className="font-semibold text-white hover:underline"
-          >
+          <Link to="/login" className="text-white font-medium hover:underline">
             Login
           </Link>
         </p>
