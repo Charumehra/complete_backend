@@ -9,10 +9,11 @@ async function registerUser(req, res) {
       return res.status(400).json({ message: "All fields are required" });
     }
 
-    const existingUser = await userModel.findOne({ email });
-
-    if (existingUser) {
-      return res.status(400).json({ message: "User already exists" });
+    const existingUSer = await userModel.findOne({
+      email
+    })
+    if(existingUSer){
+        return res.status(409).json({ message: "Email already in use" });
     }
 
     const user = await userModel.create({
