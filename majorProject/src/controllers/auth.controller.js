@@ -4,23 +4,27 @@ const bcrypt = require('bcryptjs')
 
 
 async function registerUser (req, res){
-    const {username, email, password, role='user'} = req.body
+    try {
+        const {username, email, password, role='user'} = req.body
 
-    
-        const ExistingUser = await userModel.findOne({
+        if (!username || !email || !password) {
+            return res.status(400).json({ message: 'All fields are required' })
+        }
+
+        const existingUser = await userModel.findOne({
             $or:[
                {username},
                {email}
             ]
         })
 
-        if(ExistingUser){
-           return res.status(409).json({message:"User already exist"})
+        if(existingUser){
+           return res.status(409).json({message:'User already exists'})
         }
 
         const hash = await bcrypt.hash(password,10)
 
-        const user = userModel.create({
+        const user = await userModel.create({
             username,
             email,
             password: hash,
@@ -29,21 +33,23 @@ async function registerUser (req, res){
 
         const token = jwt.sign({
             id: user._id,
-            role:user.role
+            role: user.role
         }, process.env.JWT_SECRET)
 
         res.cookie('token',token)
 
-        return res.status(201).json({message:"user created successfully",
+        return res.status(201).json({message:'user created successfully',
             user:{
                 id:user._id,
                 username:user.username, 
                 email:user.email,
                 role:user.role,
-
             }
         })
-    
+    } catch (error) {
+        console.error(error)
+        return res.status(500).json({ message: 'Server error' })
+    }
 }
 
 module.exports={
